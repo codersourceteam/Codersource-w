@@ -1,0 +1,96 @@
+{% extends 'wrapper.html' %}
+{% block title %}Coder | Source Settings{% endblock %}
+{% block content %}
+
+ <!-- main-area -->
+ <main>
+
+    <!-- breadcrumb-area -->
+    <section class="breadcrumb-area breadcrumb-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="breadcrumb-content text-center">
+                        <h3 class="title">{{user_profile.user}}'s settings</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb-area-end -->
+
+
+    <!-- create-item-area -->
+    <div class="create-item-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="signup-form-wrap">
+                        <h4 class="title">Settings</h4>
+                        <div>
+                            <style>
+                                h5{
+                                    color: red;
+                                    margin-top: 30px;
+                                    margin-bottom: 30px;
+                                }
+                            </style>
+                            {% for message in messages %}
+                            <center><h5>{{message}}</h5></center>
+                            {% endfor %}
+                          
+                            </div>
+                        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <div class="form-grp">
+                                <div class="author-profile-thumb">
+                                    <img title="Your Current Profile Image" src="{{user_profile.profileimg.url}}" alt="">
+                                </div>
+                                <label for="fName">Profile Image</label>
+                                <input name="image" type="file" id="fName">
+                            </div>
+                            <div class="form-grp">
+                                <label for="email">Name</label>
+                                <input value="{{user_profile.name}}" name="name" type="text" id="email">
+                            </div>
+                            <div class="form-grp">
+                                <label for="username">Username</label>
+                                <input value="{{user.username}}" name="username" type="text" id="username">
+                            </div>
+                            <div class="form-grp">
+                                <label for="cPassword">Bio</label>
+                                <input value="{{user_profile.bio}}" maxlength="30" minlength="8" name="bio" type="text" id="cPassword">
+                            </div>
+
+                            <div class="form-btn-wrap">
+                                <a href="{% url 'users:changepas'%}"><button type="button" class="btn login">Change Password</button></a>
+                            </div>
+
+                            <div class="form-btn-wrap">
+                                <button type="submit" class="btn signup">Change</button>
+                                <a href="/"><button type="button" class="btn login">Cancel</button></a>
+                            </div>
+                        </form> 
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="another-way-signup">
+                        <h4 class="title">Tips</h4>
+                        <p>Tips For Upload Post</p>
+                        <ul class="another-way-list">
+                            <li><a href="">Insert Image for Post banner <span>1st</span></a></li>
+                            <li><a href="">Insert Code File <span>2nd</span></a></li>
+                            <li><a href="">Don't Mess with platform and don't use illegal and banned words! <span>3rd</span></a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- create-item-area-end -->
+
+</main>
+<!-- main-area-end -->
+
+
+{% endblock %}

@@ -1,0 +1,310 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}Coder | Source detail{% endblock %}
+
+{% block content %}
+
+          <main>
+
+            <section class="breadcrumb-area breadcrumb-bg">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-8">
+                            <div class="breadcrumb-content text-center">
+                                <h3 class="title">Detail</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="breadcrumb-area market-single-breadcrumb-area">
+                <div class="breadcrumb-bg"></div>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="market-single-breadcrumb">
+                                <div class="home-back-btn"><a href="/">go back to home</a></div>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Post Details</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="market-single-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="market-single-img">
+                                <img src="{{post.image.url}}" alt="post image">
+                            </div>
+                        
+                        </div>
+
+
+                        <div class="col-lg-6">
+                            <div class="market-single-top">
+                                <div class="market-single-title-wrap">
+                                    <h2 class="title">{{post.name}}</h2>
+                                    <ul class="market-details-meta">
+                                        <li>Owned by <a href="#">{{post.user}}</a></li>
+                                        <li class="wishlist">{{ post.no_of_likes }}</li>
+                                        
+                                        <li> <span class="fa fa-eye" ></span> {{ views }}</li>
+
+                                        <li>
+
+                                            <span class="fa fa-comment"></span>
+                                            
+
+                                            {{cc}}
+
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="market-single-action">
+                                    <ul>
+                                        <li><a href=""><i class="fas fa-share-alt"></i></a></li>
+                                        <li><a href="#"><i class="fi-sr-menu-dots"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="market-single-creator">
+                                        <div class="thumb"><img style="border-radius: 100%; max-height: 50px ; max-width: 50px; min-width: 50px;" src="{{prf.profileimg.url}}" alt=""></div>
+                                        <div class="info">
+                                            <h5 class="title"><a href="/{{post.user}}/">{{post.user}} {% if prf.is_verified == True %}  <svg xmlns="" x="0px" y="0px"
+                                                width="17" height="17"
+                                                viewBox="0 0 50 50">
+                                                <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                                                </svg> {% else %}  {% endif %}</a></h5>
+                                            <span>Owner</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-sm-6">
+                                    <div class="market-single-creator">
+                                        <div class="thumb"><img src="/static/img/others/mp_avatar02.png" alt=""></div>
+                                        <div class="info">
+                                            <h5 class="title"><a href="author-profile.html">MR. Tartos</a></h5>
+                                            <span>Collection by</span>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+
+                            </div>
+
+                            <div class="highest-bid-wrap">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-12 col-md-6">
+                                        <h5 class="title">CAPTION</h5>
+                                        <div class="highest-bid-avatar">
+                                            <div class="thumb"><a href="{% url 'core:profile' post.user %}"><img style="border-radius: 100%; max-height: 50px ; max-width: 50px; min-width: 50px;" src="{{prf.profileimg.url}}" alt=""></a></div>
+                                            <div class="content">
+                                                <span>{{post.caption}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <a href="" download="{{post.source.url}}"  class="place-bid-btn">Download</a>
+                        </div>
+                        
+
+
+                        <div class="col-lg-6">
+                            <div class="bid-history-wrap">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="bid-tab" data-bs-toggle="tab" data-bs-target="#bid" type="button"
+                                            role="tab" aria-controls="bid" aria-selected="true">Comments</button>
+                                    </li>
+                                   
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="bid" role="tabpanel" aria-labelledby="bid-tab">
+                                        <div class="bid-history-overflow scroll">
+                                            <ul class="bid-history-list">
+                                                {% for c in comments %}
+
+                                                <li id="success">
+                                                    <div class="bid-history-item">
+                                                        <div class="highest-bid-avatar">
+                                                            <div class="thumb"><img style="border-radius: 100%; max-height: 50px ; max-width: 50px; min-width: 50px;" src="{{c.user.profileimg.url}}" alt=""></div>
+                                                            <div class="content">
+                                                                <h5 class="title"><a href="/{{c.user}}/">{{c.user.name}}</a></h5>
+                                                                <span style="width: 70px; margin-top: 10px;">{{c.comment}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="bid-history-info">
+                                                            {% if c.user.user == request.user %}
+
+                                                            <a href="{% url 'delete:comment' c.uid post.id %}"><h1 class="title">Delete</h1></a>
+
+                                                            {% else %}
+                                                            <a href="{% url 'delete:comment' c.uid post.id %}"><h1 class="title">Reply</h1></a>
+                                                            {% endif %}
+                                                            <span>{{c.ctime}}</span>
+                                                            <h6 class="title">{{c.date}}</h6>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                {% empty %}
+                                                <li>
+                                                    <div class="bid-history-item">
+                                                        <div class="highest-bid-avatar">
+                                        
+                                                            <div class="content">
+                                                                <h5 class="title"><a href="">No Comments</a></h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                {% endfor %}
+
+                                            
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    
+                                    
+                                </div>
+
+                            
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6">
+                            <div class="activity-table-responsive">
+                                
+
+                                
+
+
+                            </div>
+                        </div>
+
+
+
+
+                        <form action="{% url 'users:comment' post.id %}" method="post">{% csrf_token %}
+
+
+
+                            <div class="row" style="margin-top: 30px;">
+
+                                <div class="col-md-6">
+    
+                                    <div class="signup-form-wrap">
+    
+                                        <div class="form-grp">
+    
+                                            <label for="comment">Comment</label>
+                                            <input placeholder="Enter your comment (less than 30letters)" maxlength="30" minlength="2" name="comment" type="text">
+    
+                                        </div>
+
+                                        <div class="form-btn-wrap">
+                                            <button class="btn signup">Leave</button>
+                                        </div>
+    
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </section>
+
+            
+
+            <section class="top-collection-area live-auctions-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="section-title mb-40">
+                                <h2 class="title">Other Posts <img src="/static/img/icons/title_icon01.png" alt=""></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row top-collection-active">
+
+
+                       {% for p in posts %}
+
+                       <div class="col-xl-3">
+                        <div class="top-collection-item">
+                            <div class="collection-item-top">
+                                <ul>
+                                    <li class="avatar"><a href="/{{p.user}}/" class="thumb"><img src="{{p.image.url}}" alt=""></a>By <a href="/{{p.user}}/" class="name">{{p.user}}</a>  {% if p.user.is_verified == True %}&nbsp;  <svg xmlns="" x="0px" y="0px"
+                                        width="17" height="17"
+                                        viewBox="0 0 50 50">
+                                        <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                                        </svg> {% else %}  {% endif %}</li>
+                                </ul>
+                            </div>
+                            <div class="collection-item-thumb">
+                                <a href="{% url 'core:detail' p.id %}"><img style="width: 1000px; height: 150px;" src="{{p.image.url}}" alt=""></a>
+                            </div>
+                            <div class="collection-item-content">
+                                <h5 class="title"><a href="{% url 'core:detail' p.id %}">{{p.name}}</a> <span class="price">{{p.created_at}}</span></h5>
+                            </div>
+                            <div class="collection-item-bottom">
+                                <ul>
+                                    <li class="bid"><a href="{% url 'core:detail' p.id %}" class="btn">Visit</a></li>{% if p.user.user == user %}<li class="bid"><a href="{% url 'core:detail' p.id %}" class="btn">Edit</a></li>{% endif %}
+                                    <li class="wishlist"><a href="{% url 'core:like' p.id %}">{{p.no_of_likes}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                       {% empty %}
+                       <center><h1>Empty!</h1></center>
+                       {% endfor %}
+
+
+                    </div>
+                </div>
+            </section>
+
+            
+
+
+        </main>
+
+        <!-- <script>
+            $(document).on('submit', '#comment', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'users:comment' post.id %}",
+                    data: {
+                      comment: $('#message').val(),
+                      csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success: function (data) {
+                      $('#success').html(data)
+                    }
+                })
+            })
+        </script> -->
+
+{% endblock %}

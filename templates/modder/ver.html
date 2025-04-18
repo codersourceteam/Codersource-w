@@ -1,0 +1,50 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}Verification Request{% endblock %}
+
+{% block content %}
+
+
+
+
+   <!-- main-area -->
+   <main style="margin-top: 60px;">
+
+   
+
+    <!-- blog-details-area -->
+    <section class="blog-details-area pt-80 pb-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-9 col-lg-8">
+                    <div class="standard-blog-item blog-details-content">
+                
+                        <div class="standard-blog-content">
+                            <h4 class="title">{{ver.user}}</h4>
+                           
+                            <blockquote>
+                                “ {{ver.query}} “
+                                <footer><a href="{{ver.url}}">{{ver.url}}</a></footer>
+                            </blockquote>
+                            
+                            <div class="form-btn-wrap">
+                                <a href="{% url 'moderator:verify' ver.uid %}"><button type="button" class="btn signup">Apply</button></a>
+                                <a href="{% url 'moderator:index' %}"><button type="button" class="btn login">Cancel</button></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- blog-details-area-end -->
+
+</main>
+<!-- main-area-end -->
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,375 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{% block title %}{% endblock %}</title>
+        {% load static %}
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="/static/logo/cs.png">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        {% load cache %}
+
+
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/animate.min.css">
+        <link rel="stylesheet" href="/static/css/magnific-popup.css">
+        <link rel="stylesheet" href="/static/css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="/static/css/uicons-solid-rounded.css">
+        <link rel="stylesheet" href="/static/css/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="/static/css/flaticon.css">
+        <link rel="stylesheet" href="/static/css/slick.css">
+        <link rel="stylesheet" href="/static/css/default.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">
+        <link rel="stylesheet" href="/static/fonawesome/css/all.min.css">
+        
+    </head>
+    <body>
+
+
+        <div id="preloader">
+            <div id="loading-center">
+                <div id="loading-center-absolute">
+                    <div class="object" id="object_one"></div>
+                    <div class="object" id="object_two"></div>
+                    <div class="object" id="object_three"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <i class="fas fa-angle-up"></i>
+        </button>
+
+        
+
+        <div class="sidebar">
+            <div class="sidebar-logo mb-25">
+                <a href="/"><img src="/static/logo/cs.png" alt="codersourceheader"></a>
+            </div>
+            <div class="sidebar-icon">
+                <ul>
+                    <li class="active"><a href="/"><i class="fi-sr-apps-delete"></i></a></li>
+                    <li><a href="{% url 'core:cmatrix' %}"><i class="fi-sr-book-alt"></i></a></li>
+                    {% if user.is_staff %}
+                    <li><a href="{% url 'moderator:index' %}"><i class="fi-sr-butterfly"></i></a></li>
+                    {% endif %}
+                    <li><a href="{% url 'core:upload' %}"><i class="fi-sr-camping"></i></a></li>
+                    <li><a href="{% url 'direct:direct' user.username %}"><i class="fi-sr-crown"></i></a></li>
+                    <li><a href="{% url 'users:settings' %}"><i class="fi-sr-settings"></i></a></li>
+                    <li><a href="#" id="btnFullscreen"><i class="fi-sr-tool-marquee"></i></a></li>
+                </ul>
+            </div>
+        </div>
+   
+        
+
+        <div class="offcanvas-wrapper">
+            <div class="menu-trigger"><i class="fi-sr-angle-small-left"></i></div>
+            <div class="menu-close"><i class="fi-sr-angle-small-right"></i></div>
+            <div class="offcanvas-inner scroll">
+                <div class="author-profile text-center mb-30">
+                    <img style="max-width:150px ; border-radius: 20px;" src="{{prf.profileimg.url}}" alt="">
+                    <div class="author-content">
+                        
+                        <h4 class="title">{{user.username}} {% if prf.is_verified %} <svg xmlns="" x="0px" y="0px"
+                            width="20" height="20"
+                            viewBox="0 0 48 48">
+                            <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                        </svg> {% else %}{% endif %} </h4>
+                        <br>
+
+                        
+
+                        <a href="{% url 'core:profile' user.username %}" class="btn">Profile</a>
+                    </div>
+                </div>
+                <div class="sidebar-slider text-center mb-25">
+                    <div class="sidebar-active">
+                        <div class="sidebar-img">
+                            <a href="{% url 'core:upload' %}"><img src="/static/logo/BG.png" alt=""></a>
+                        </div>
+                        <div class="sidebar-img">
+                            <a href="/toptalfreelancer/"><img src="/static/logo/1.png" alt=""></a>
+                        </div>
+                        <div class="sidebar-img">
+                            <a href="/codersource/"><img src="/static/logo/codersource.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="overview">
+                    <div class="overview-title">
+                        <h4 class="title">Your Details</h4>
+                    </div>
+                    <div class="overview-item-wrap">
+                        <div class="overview-item">
+                            <div style="background-color: black;" class="overview-icon">
+                                <svg xmlns="" x="0px" y="0px"
+                                    width="40" height="40"
+                                    viewBox="0 0 48 48">
+                                    <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                                </svg>
+                            </div>
+
+
+                            {% if prf.is_verified %}
+
+                            <div class="overview-content">
+                                <h4 class="title">Unverify Your Account</h4>
+                            </div>
+                            <a href="{% url 'verification:proccess' %}"><i class=" fi-sr-angle-small-right"></i></a>
+
+                            {% else %}
+
+                            <div class="overview-content">
+                                <h4 class="title">Verify Your Account</h4>
+                            </div>
+                            <a href="{% url 'verification:ver' user.username %}"><i class=" fi-sr-angle-small-right"></i></a>
+                            {% endif %}
+
+
+                        </div>
+                        <div class="overview-item">
+                            <div class="overview-icon">
+                                <i class="fi-sr-settings"></i>
+                            </div>
+                            <div class="overview-content">
+                                <h4 class="title">Settings</h4>
+                            </div>
+                            <a href="{% url 'users:settings' %}"><i class=" fi-sr-angle-small-right"></i></a>
+                        </div>
+                        <div class="overview-item">
+                            <div class="overview-icon">
+                                <i class=" fi-sr-hourglass-end"></i>
+                            </div>
+                            <div class="overview-content">
+                                <h4 class="title">LogOut</h4>
+                            </div>
+                            <a href="{% url 'users:logout' %}"><i class=" fi-sr-angle-small-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview">
+                    <div class="overview-title">
+                        <h4 class="title">Profiles</h4>
+                    </div>
+                    <div class="overview-item-wrap">
+                        <div class="overview-item">
+
+                            <div class="overview-icon">
+                                <i style="background-color: rgb(5, 5, 88); color: black; ">{{forloop.counter}}</i>
+                            </div>
+                            <div class="overview-content">
+                                <h4 class="title">{{user.username}}</h4>
+                            </div>
+                            <a href="{% url 'verification:ver' user.username %}"><i class=" fi-sr-angle-small-right"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="offcanvas-overly"></div>
+
+        
+
+        <div class="main-content">
+
+            
+
+            <header>
+                <div class="menu-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                                <div class="menu-wrap">
+                                    <nav class="menu-nav">
+                                        <div class="logo"><a href="/"><img src="/static/logo/codersource.png" alt=""></a></div>
+                                        <div class="header-form">
+                                            <form action="{% url 'search:post' %}" method="post">{% csrf_token %}
+                                                <button type="submit"><i class="flaticon-search"></i></button>
+                                                <input name="query" type="text" placeholder="Search Source Code">
+                                            </form>
+                                        </div>
+                                        <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                            <ul class="navigation">
+                                                <li class="active"><a href="/">Home</a></li>
+                                                <li class="menu-item-has-children"><a href="#">Pages</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="{% url 'core:upload' %}">Upload Post</a></li>
+                                                        <li><a href="{% url 'users:all' %}">All Users</a></li>
+                                                        <li><a href="{% url 'core:profile' user.username %}">Profile</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="menu-item-has-children"><a href="#">About</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="{% url 'about:codersource' %}">About Us</a></li>
+                                                        <li><a href="{% url 'about:team' %}">Our Team</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="header-action d-none d-md-block">
+                                            <ul>
+                                                <li class="header-btn"><a href="{% url 'core:profile' user.username %}" class="btn">{{user.username}}</a></li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                </div>
+                             
+                                
+
+                                <div class="mobile-menu">
+                                    <nav class="menu-box">
+                                        <div class="close-btn"><i class="fas fa-times"></i></div>
+                                        <div class="nav-logo"><a href="/"><img src="/static/logo/codersource.png" alt=""></a>
+                                        </div>
+                                        <div class="menu-outer">
+                                       
+                                            
+
+                                        </div>
+                                        <div class="social-links">
+                                            <ul class="clearfix">
+                                                <li><a href="https://twitter.com/toptalfreelancer"><span class="fab fa-twitter"></span></a></li>
+                                                <li><a href="https://fb.com/toptalfreelancer"><span class="fab fa-facebook-f"></span></a></li>
+                                                <li><a href="https://ig.com/toptalfreelancer"><span class="fab fa-instagram"></span></a></li>
+                                                <li><a href="https://youtube.com/c/toptalfreelancer"><span class="fab fa-youtube"></span></a></li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                </div>
+                                <div class="menu-backdrop"></div>
+                               
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+       
+            
+
+
+
+
+
+
+
+
+
+
+
+            {% block content %}
+
+
+
+            {% endblock %}
+
+
+
+ 
+            
+            <footer>
+                <div class="footer-top-wrap">
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-xl-3 col-lg-4 col-md-5 col-sm-9">
+                                <div class="footer-widget">
+                                    <div class="footer-logo mb-25">
+                                        <a href="/"><img src="/static/logo/codersource.png" alt=""></a>
+                                    </div>
+                                    <p>Coder | Source</p>
+                                    <ul class="footer-social">
+                                        <li><a href="https://facebook.com/ttfcorp"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="https://twitter.com/ttfcorp"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="https://linkedin.com/ttfcorp"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="https://instagram.com/ttfcorp"><i class="fab fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-6">
+                                <div class="footer-widget">
+                                    <h4 class="fw-title">Useful Links</h4>
+                                    <ul class="fw-links">
+                                        <li><a href="{% url 'core:profile' user.username %}">Profile</a></li>
+                                        <li><a href="{% url 'core:upload' %}">Upload Post</a></li>
+                                        <li><a href="create-item.html">About Coder | Source</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-6">
+                                <div class="footer-widget">
+                                    <h4 class="fw-title">Community</h4>
+                                    <ul class="fw-links">
+                                        <li><a href="https://t.me/toptalfreelancer">Help Center</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6">
+                                <div class="footer-widget">
+                                    <h4 class="fw-title">You May Give Us Questions</h4>
+
+                                    <form action="/add/question" class="newsletter-form" method="post">{% csrf_token %}
+                                        <input required name="body" type="text" placeholder="Question?">
+                                        <button type="submit"><i class="flaticon-small-rocket-ship-silhouette"></i></button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright-wrap">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="copyright-text">
+                                    <p>Coder | Source © 2023 by <a href="/toptalfreelancer">TopTalFreelancer</a></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="copyright-link-list">
+                                    <li><a href="" download="/media/privacy_policy/privacy_policy.pdf" >Privacy Policy</a></li>
+                                    <li><a href="mailto:mukhammad@codersource.uz">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            
+
+        </div>
+
+        
+
+
+
+
+        
+        <script src="/static/js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/isotope.pkgd.min.js"></script>
+        <script src="/static/js/imagesloaded.pkgd.min.js"></script>
+        <script src="/static/js/jquery.magnific-popup.min.js"></script>
+        <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/static/js/slick.min.js"></script>
+        <script src="/static/js/wow.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+
+
+    </body>
+
+    
+</html>

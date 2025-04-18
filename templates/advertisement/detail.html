@@ -1,0 +1,174 @@
+{% extends 'wrapper.html' %}
+
+{% block title %} Detail{% endblock %}
+
+{% block content %}
+
+
+
+
+   <!-- main-area -->
+   <main style="margin-top: 60px;">
+
+   
+
+    <!-- blog-details-area -->
+    <section class="blog-details-area pt-80 pb-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-9 col-lg-8">
+                    <div class="standard-blog-item blog-details-content">
+                        <div class="blog-thumb">
+                            <center><img style="border-radius: 10px;" src="{{ad.image.url}}" alt=""></center>
+                        </div>
+                        <div class="standard-blog-content">
+                            <ul class="standard-blog-meta">
+                                <li><a href="#"><i class="flaticon-supermarket"></i>{{ ad.name }}</a></li>
+                                <li><a href="#"><i class="flaticon-avatar"></i>{{ad.user}}</a></li>
+                                <li><a href="#"><i class="flaticon-calendar"></i>{{ad.reg_date}}</a></li>
+                            </ul>
+                            <h4 class="title">{{ad.name}}</h4>
+                           
+                            <blockquote>
+                                “ {{ad.body|safe}} “
+                                <footer>{{ad.user}}</footer>
+                            </blockquote>
+                        
+                            <div class="blog-line"></div>
+                            <div class="blog-details-bottom">
+                                <div class="blog-details-tags">
+                                    <ul>
+                                        <li class="title">Owner :</li>
+                                        <li><a href="/{{ad.user}}/">{{ad.user}}</a></li>
+                                    </ul>
+                                </div>
+                                <div class="blog-details-social">
+                                    <ul>
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {% for c in comment %}
+
+                    <div class="avatar-post mt-50 mb-50">
+                        <div class="post-avatar-img">
+                            <img style="max-height: 100%; max-width: 100%; min-width: 100% ; min-height: 100%;" src="{{c.user.profileimg.url}}" alt="img">
+                        </div>
+                        <div class="post-avatar-content">
+                            <h5>{{c.user.user.username}} {% if c.user.is_verified %} 
+                                
+                                <svg xmlns="" x="0px" y="0px"
+                                                width="20" height="20"
+                                                viewBox="0 0 48 48">
+                                                <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                                                </svg>
+
+                                {% else %}{% endif %} </h5>
+                            <p>{{c.comment}}
+                            </p>
+                            <ul class="post-avatar-social">
+                                <li><a href="#"><i><b>M</b></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {% empty %}
+
+                    <div class="avatar-post mt-50 mb-50">
+
+    
+                        <div class="post-avatar-content">
+                            <h5>Thereis no comments</h5>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                    
+                    <div class="comment-reply-box">
+                        <h5 class="title">Leave a Comment</h5>
+                        <form action="{% url 'advert:comment' ad.uid %}" class="comment-reply-form" method="post">{% csrf_token %}
+
+                            <div class="form-grp">
+                                <textarea name="message" placeholder="Type Comment Here..."></textarea>
+                            </div>
+                            <button type="submit" class="btn">Leave</button>
+                        </form>
+                    </div>
+
+                    
+                </div>
+                <div class="col-xxl-3 col-lg-4">
+                    <aside class="blog-sidebar">
+                        <div class="widget">
+                            <h4 class="sidebar-title">Search</h4>
+                            <div class="sidebar-search">
+                                <form action="#">
+                                    <input type="text" placeholder="Search ...">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <h4 class="sidebar-title">Categories</h4>
+                            <div class="sidebar-cat-list">
+                                <ul>
+                                    <li><a href="#">Domain Names <i class="fas fa-angle-double-right"></i></a></li>
+                                    <li><a href="#">Photography <i class="fas fa-angle-double-right"></i></a></li>
+                                    <li><a href="#">Coinbase <i class="fas fa-angle-double-right"></i></a></li>
+                                    <li><a href="#">Trading Cards <i class="fas fa-angle-double-right"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <h4 class="sidebar-title">Recent Post</h4>
+                            <div class="rc-post-list">
+                                <ul>
+                                    <li>
+                                        <div class="rc-post-thumb">
+                                            <a href="blog-details.html"><img src="/static/img/blog/rc_post_thumb01.jpg" alt=""></a>
+                                        </div>
+                                        <div class="rc-post-content">
+                                            <ul class="standard-blog-meta">
+                                                <li><a href="#"><i class="flaticon-avatar"></i>Admin</a></li>
+                                                <li><a href="#"><i class="flaticon-calendar"></i>Mar 10, 2022</a></li>
+                                            </ul>
+                                            <h5 class="title"><a href="blog-details.html">Marketplace is the online shop for the video</a></h5>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="rc-post-thumb">
+                                            <a href="blog-details.html"><img src="/static/img/blog/rc_post_thumb02.jpg" alt=""></a>
+                                        </div>
+                                        <div class="rc-post-content">
+                                            <ul class="standard-blog-meta">
+                                                <li><a href="#"><i class="flaticon-avatar"></i>Admin</a></li>
+                                                <li><a href="#"><i class="flaticon-calendar"></i>Mar 10, 2022</a></li>
+                                            </ul>
+                                            <h5 class="title"><a href="blog-details.html">Marketplace is the online shop for the video</a></h5>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- blog-details-area-end -->
+
+</main>
+<!-- main-area-end -->
+
+
+
+
+
+{% endblock %}

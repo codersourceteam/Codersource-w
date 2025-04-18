@@ -1,0 +1,170 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}Coder | Source Modder Panel {% endblock %}
+
+{% block content %}
+
+<div style="margin-top: 40px;" class="activity-area">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-xl-9 col-lg-8">
+
+
+
+                
+                <div class="activity-table-wrap">
+                    <div class="activity-table-nav">
+                        <h4 class="title">Coder | Source Moderator</h4>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="nft-tab" data-bs-toggle="tab" data-bs-target="#nft" type="button"
+                                    role="tab" aria-controls="nft" aria-selected="true">Verification Req</button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="month-tab" data-bs-toggle="tab" data-bs-target="#month" type="button"
+                                    role="tab" aria-controls="month" aria-selected="false">Posts</button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="question-tab" data-bs-toggle="tab" data-bs-target="#question" type="button"
+                                    role="tab" aria-controls="month" aria-selected="false">Questions</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="nft" role="tabpanel" aria-labelledby="nft-tab">
+                            <div class="activity-table-responsive">
+                                <table class="table activity-table">
+
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"> {{vercount}} Requests</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+
+                                        {% for v in vers %}
+                                        <tr>
+                                            <th scope="row" class="author">
+                                                <a href="{% url 'moderator:verification' v.uid %}">{{v.user}}</a>
+                                            </th>
+                                            
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <th scope="row" class="author">
+                                                <a href="">There is No Requests Yet</a>
+                                            </th>
+                                            
+                                        </tr>
+                                        {% endfor %}
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="month" role="tabpanel" aria-labelledby="month-tab">
+                            <div class="activity-table-responsive">
+                                <table class="table activity-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">{{ count }} &nbsp; Posts</th>
+                                            <th scope="col">User</th>
+                                            <th scope="col">Caption</th>
+                                            <th scope="col">Registration Date</th>
+                                            <th scope="col">Likes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for p in posts %}
+
+                                        <tr>
+                                            <th scope="row" class="author">
+                                         <a href="{% url 'moderator:post' p.id %}">{{p.name}}</a>
+                                            </th>
+                                            <td class="price">{{p.user.user.username}}</td>
+                                            <td>{{p.caption|truncatewords:2}}</td>
+                                            <td>{{p.created_at}}</td>
+                                            <td>{{p.no_of_likes}}</td>
+                                        </tr>
+
+
+                                        {% empty %}
+                                        <tr>
+                                            <th scope="row" class="author">
+                                                <a href="">There is Posts Yet</a>
+                                            </th>
+                                            
+                                        </tr>
+                                        {% endfor %}
+
+                                   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="question" role="tabpanel" aria-labelledby="question-tab">
+                            <div class="activity-table-responsive">
+                                <table class="table activity-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">{{ countquest }} &nbsp; Questions</th>
+                                            <th scope="col">User</th>
+                                            <th scope="col">Body</th>
+    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for q in questions %}
+
+
+                                            <tr>
+                                            <th scope="row" class="author">
+                                                <a href="{% url 'moderator:answer' q.uid %}">{{forloop.counter}}</a>
+                                            </th>
+                                            <td class="price">{{q.user.user}}</td>
+                                            <td>{{q.body|truncatewords:1}}</td>
+                                            <td>{% if q.is_seen %}Seen{% else %}Not Seen{% endif %}</td>
+                                            </tr>
+
+
+                                        {% empty %}
+                                        <tr>
+                                            <th scope="row" class="author">
+                                                <a href="">There is No Questions</a>
+                                            </th>
+                                            
+                                        </tr>
+                                        {% endfor %}
+
+                                   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</main>
+
+{% endblock %}

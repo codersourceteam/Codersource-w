@@ -1,0 +1,132 @@
+
+{% extends 'wrapper.html' %}
+
+{% block title %}Coder | Source Upload{% endblock %}
+
+{% block content %}
+
+<main>
+
+    <!-- breadcrumb-area -->
+    <section class="breadcrumb-area breadcrumb-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="breadcrumb-content text-center">
+                        <h3 class="title">Create Item</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb-area-end -->
+
+    <!-- category-area -->
+    <div class="category-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="category-list">
+                        <li class="active"><a href="index.html"><img src="/static/img/icons/cat_001.png" alt=""> All</a></li>
+                        <li><a href="nft-marketplace.html"><img src="/static/img/icons/cat_01.png" alt=""> Games</a></li>
+                        <li><a href="nft-marketplace.html"><img src="/static/img/icons/cat_02.png" alt=""> Art</a></li>
+                        <li><a href="nft-marketplace.html"><img src="/static/img/icons/cat_03.png" alt=""> Trading Cards</a></li>
+                        <li><a href="nft-marketplace.html"><img src="/static/img/icons/cat_04.png" alt=""> Music</a></li>
+                        <li><a href="nft-marketplace.html"><img src="/static/img/icons/cat_05.png" alt=""> Domain Names</a></li>
+                        <li><a href="nft-marketplace.html"><img src="/static/img/icons/cat_06.png" alt=""> Memes</a></li>
+                        <li><a href="nft-marketplace.html"><img src="/static/img/icons/cat_07.png" alt=""> Collectibles</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- category-area-end -->
+
+    <!-- create-item-area -->
+    <div class="create-item-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <aside class="create-item-sidebar">
+                        <h4 class="title">Preview item</h4>
+                        <div class="top-collection-item mb-0">
+                            <div class="collection-item-top">
+                                <ul>
+                                    {% load admin_list %} 
+                                    <li class="avatar"><a href="{% url 'core:profile' user.username %}" class="thumb"><img src="{{profile.profileimg.url}}" alt=""></a>By <a href="{% url 'core:profile' user.username %}" class="name">{{user.username}}</a></li>
+                                    
+                                </ul>
+                            </div>
+                            <div class="collection-item-thumb">
+                                <a href=""><img src="/static/logo/img.png" alt=""></a>
+                            </div>
+                            <div class="collection-item-content">
+                                <h5 class="title">Name Of Your Post <span class="price">reg date</span></h5>
+                            </div>
+                            <div class="collection-item-bottom">
+                                
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-xl-9 col-lg-8">
+
+                    <form action="" class="create-item-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+                        <div>
+                            <style>
+                                h5{
+                                    color: red;
+                                    margin-top: 30px;
+                                    margin-bottom: 30px;
+                                }
+                            </style>
+                            {% for message in messages %}
+                            <center><h5>{{message}}</h5></center>
+                            {% endfor %}
+                          
+                            </div>
+
+                            <div class="form-grp">
+                                <label for="file">Image For Banner</label>
+                                <input required id="file" type="file" name="image" accept="image/*">
+                            </div>
+
+
+                        <div class="form-grp">
+                            <label for="img">Source Code Archive</label>
+                            <input required id="img" type="file" name="source">
+                        </div>
+
+
+                        <div class="form-grp">
+                            <label for="price">Name</label>
+                            <input required id="price" type="text" placeholder="Name of your Source Code" name="name">
+                        </div>
+
+
+                        <div class="form-grp">
+                            <label for="title">Caption</label>
+                            <input required name="caption" maxlength="30" id="title" type="text" placeholder="Caption (less than 30)">
+                        </div>
+
+
+                        <button type="submit" class="btn">Upload</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- create-item-area-end -->
+
+</main>
+<!-- main-area-end -->
+
+
+            {% endblock %}
+

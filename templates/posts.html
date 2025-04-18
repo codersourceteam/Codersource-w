@@ -1,0 +1,37 @@
+{% extends 'profile.html' %}
+
+{% block post %}
+
+<div class="row justify-content-center">
+    {% for p in post %}
+
+    <div class="col-xl-4 col-md-6 col-sm-6">
+        <div class="top-collection-item">
+            <div class="collection-item-top">
+                <ul>
+                    <li class="avatar"><a href="" class="thumb"><img  src="{{p.user.profileimg.url}}" alt=""></a>By <a href="" class="name">@ {{p.user}}</a></li>
+                </ul>
+            </div>
+            <div class="collection-item-thumb">
+                <a href="{% url 'core:detail' p.id %}"><img style="width: 1000px; height: 150px;" src="{{p.image.url}}" alt=""></a>
+            </div>
+            <div class="collection-item-content">
+                <h5 class="title"><a href="">{{p.name}}</a> <span class="price">{{p.created_at}}</span></h5>
+            </div>
+            <div class="collection-item-bottom">
+                <ul>
+                    <li class="bid"><a href="{% if profile.user == user %}{% url 'edit:post' p.id %}{% else %}{% url 'core:detail' p.id %}{% endif %}" class="btn">{% if profile.user == user %}Edit{% else %}Visit{% endif %}</a></li>
+                    <li class="wishlist"><a href="{% url 'core:like' p.id %}">{{p.no_of_likes}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="breadcrumb-content text-center">
+        <h3 class="title">No Posts Yet❌</h3>
+    </div>
+    {% endfor %}
+    
+    </div>
+
+{% endblock %}

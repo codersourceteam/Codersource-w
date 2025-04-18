@@ -1,0 +1,91 @@
+{% extends 'wrapper.html' %}
+
+{% block title %} Coder | Source all users {% endblock %}
+
+{% block content %}
+
+<main>
+
+    
+
+    <section class="breadcrumb-area breadcrumb-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="breadcrumb-content text-center">
+                        <h3 class="title" title="Scroll down">All Users</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+    
+
+
+    
+
+    <section class="creator-area pt-80 pb-80">
+        <div class="container">
+            <div class="row">
+                    <div class="section-title mb-35">
+                        <h2 class="title" title="{% if user.is_staff %}Users count : {{c}}{% else %} All Users Of Coder | Source{%endif%}">All Users <img style="width: 25px; height: 25px;" src="/static/img/icons/cat_001.png" alt=""></h2>
+                    </div>
+                    
+                    {% for m in users %} 
+
+                    
+
+
+                    <div class="col-xl-3">
+                        <div class="top-collection-item">
+                            
+
+                            <div class="collection-item-top">
+                                <ul>
+                                    <li class="avatar"><a href="/{{m.user.username}}" class="name" title="user">{{m.user.username}} {% if m.is_verified == True %}<svg xmlns="" x="0px" y="0px"
+                                        width="15" height="15"
+                                        viewBox="0 0 48 48">
+                                        <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                                        </svg>{% else %}{% endif %} </a></li>
+                                </ul>
+                            </div>
+                            <div class="collection-item-thumb">
+                                <a href="/{{m.user.username}}/"><img style="width: 1000px; height: 150px;" src="{{ m.profileimg.url }}" alt=""></a>
+                            </div>
+                            <div class="collection-item-content">
+                                <h5 class="title"><a href="/{{m.user.username}}/">{{m.name}}</a></h5>
+                            </div>
+                            <div class="collection-item-bottom">
+                                <ul>
+                                    {% if m.user == user %}
+                                    <li class="bid"><a href="{% url 'users:settings' %}" class="btn">Account Settings</a></li>
+                                    {% else %}
+                                    <li class="bid"><a href="{% url 'core:profile' m.user.username %}" class="btn">Visit</a></li>
+                                    {% endif %}
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    {% empty %}
+
+                    {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    
+
+
+
+</main>
+
+
+
+{% endblock %}

@@ -1,0 +1,142 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Coder | Source LogIn</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="/static/logo/cs.png">
+        <!-- Place favicon.ico in the root directory -->
+
+		<!-- CSS here -->
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/animate.min.css">
+        <link rel="stylesheet" href="/static/css/magnific-popup.css">
+        <link rel="stylesheet" href="/static/css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="/static/css/uicons-solid-rounded.css">
+        <link rel="stylesheet" href="/static/css/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="/static/css/flaticon.css">
+        <link rel="stylesheet" href="/static/css/slick.css">
+        <link rel="stylesheet" href="/static/css/default.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">
+    </head>
+    <body>
+
+        <!-- preloader -->
+        <div id="preloader">
+            <div id="loading-center">
+                <div id="loading-center-absolute">
+                    <div class="object" id="object_one"></div>
+                    <div class="object" id="object_two"></div>
+                    <div class="object" id="object_three"></div>
+                </div>
+            </div>
+        </div>
+        <!-- preloader-end -->
+
+		<!-- Scroll-top -->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <i class="fas fa-angle-up"></i>
+        </button>
+        <!-- Scroll-top-end-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- header-area-end -->
+
+            <!-- main-area -->
+            <main>
+
+                <!-- breadcrumb-area -->
+                <section class="breadcrumb-area breadcrumb-bg">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 col-md-8">
+                                <div class="breadcrumb-content text-center">
+                                    <h3 title="scroll down" class="title">Activate Your Account 👇</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- breadcrumb-area-end -->
+
+
+                <!-- welcome-area -->
+                <section class="login-welcome-area">
+                    
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="signup-form-wrap">
+                                    <h4 class="title">Activate</h4>
+                                    <div>
+                                        <style>
+                                            h5{
+                                                color: red;
+                                                margin-top: 30px;
+                                                margin-bottom: 30px;
+                                            }
+                                        </style>
+                                        {% for message in messages %}
+                                        <center><h5>{{message}}</h5></center>
+                                        {% endfor %}
+                                      
+                                        </div>
+                                    <form action="" method="post"> {% csrf_token %}
+                                        <div class="form-grp">
+                                            <label for="username">Verification Code</label>
+                                            <input required name="ver" type="number" id="username">
+                                        </div>
+                                        
+                                        <div class="form-btn-wrap">
+                                            <button type="submit" class="btn login">Activate</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="another-way-signup">
+                                    <h4 class="title">Tips</h4>
+                                    <p>Tips for you for log or sign your account</p>
+                                    <ul class="another-way-list">
+                                        <li><a href="">Insert Verification code which you received! <span>1st</span></a></li>
+                                        <li><a href="">Log Into Your account✅ <span>2nd</span></a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- welcome-area-end -->
+
+            </main>
+            <!-- main-area-end -->
+
+
+           
+
+        </div>
+        <!-- main-content-end -->
+
+
+
+		<!-- JS here -->
+        <script src="/static/js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/isotope.pkgd.min.js"></script>
+        <script src="/static/js/imagesloaded.pkgd.min.js"></script>
+        <script src="/static/js/jquery.magnific-popup.min.js"></script>
+        <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/static/js/slick.min.js"></script>
+        <script src="/static/js/wow.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>

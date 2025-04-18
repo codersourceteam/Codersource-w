@@ -1,0 +1,19 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}Coder | Source Unverify Account{% endblock %}
+
+{% block content %}
+
+
+
+
+<div style="margin-top: 150px;" class="comment-reply-box">
+    <h5 class="title">Unverify Account</h5>
+        <a href="{% url 'verification:unverify' %}"><button type="submit" class="btn">unverify</button></a>
+        <a href="/"><button type="submit" class="btn">Cancel</button></a>
+    </form>
+</div>
+
+
+
+{% endblock %}

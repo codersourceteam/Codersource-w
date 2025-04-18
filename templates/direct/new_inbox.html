@@ -1,0 +1,104 @@
+{% extends 'wrapper.html' %}
+
+{% block title %} Messages inbox {{user.username}}  {% endblock %}
+
+{% block content %}
+
+    <main style="margin-top: 130px;">
+
+    <section class="market-single-area">
+        <div class="container">
+            <div class="row">
+               
+
+
+                <div class="col-lg-6">
+                    <div class="bid-history-wrap">
+
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="bid" role="tabpanel" aria-labelledby="bid-tab">
+                                <div class="bid-history-overflow scroll">
+                                    <ul class="bid-history-list">
+                                        
+                                        <li>
+                                            <div class="bid-history-item">
+                                                <div class="highest-bid-avatar">
+                                
+                                                    <div class="content">
+                                                        <h5 class="title"><a href="">No Messages With This User!</a></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    
+                                    </ul>
+                                </div>
+                            </div>
+
+                            
+                            
+                        </div>
+
+                    
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="activity-table-responsive">
+                        
+
+                        
+
+
+                    </div>
+                </div>
+
+
+
+
+                <form action="{% url 'direct:create' prof.user  %}" method="post">{% csrf_token %}
+
+
+
+                    <div class="row" style="margin-top: 30px;">
+
+                        <div class="col-md-6">
+
+                            <div class="signup-form-wrap">
+
+                                <div class="form-grp">
+
+                                    <label for="rPassword">Message</label>
+                                    <input placeholder="Enter your message here" maxlength="140" minlength="1" name="message" type="text" id="rPassword">
+
+                                </div>
+
+                                <div class="form-btn-wrap">
+                                    <button type="submit" class="btn signup">Send</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    
+
+        
+
+
+</main>
+
+
+
+{% endblock %}

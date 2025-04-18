@@ -1,0 +1,54 @@
+{% extends 'wrapper.html' %}
+
+{% block title %}Moderator | Answer{% endblock %}
+
+{% block content %}
+
+<!-- main-area -->
+<main style="margin-top: 60px;">
+
+   
+
+    <!-- blog-details-area -->
+    <section class="blog-details-area pt-80 pb-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-9 col-lg-8">
+                    <div class="standard-blog-item blog-details-content">
+                
+                        <div class="standard-blog-content">
+                            <h4 class="title">{{question.user}}</h4>
+                           
+                            <blockquote>
+                                “ {{question.body}} “
+                                <footer><a href="">{{question.user.user.email}}</a></footer>
+                            </blockquote>
+                            
+                            <div class="form-btn-wrap">
+                            
+                                <form class="create-item-form" action="" method="post">{% csrf_token %}
+
+                                    <div class="form-grp">
+                                        <label for="title">Answer</label>
+                                        <input required value="" name="answer"  id="title" type="text" placeholder="Message here">
+                                    </div>
+                                    
+                                <button type="submit" class="btn signup">Answer</button>
+                                <a href="/ttf/modder"><button type="button" class="btn login">Cancel</button></a>
+
+                                </form>
+                            
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- blog-details-area-end -->
+
+</main>
+<!-- main-area-end -->
+
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'profile.html' %}
+
+{% block post %}
+
+
+                            <div class="col-xl-9 col-lg-8">
+                        
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="col-lg-6">
+                                            <div class="bid-history-wrap">
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link active" id="bid-tab" data-bs-toggle="tab" data-bs-target="#bid" type="button"
+                                                            role="tab" aria-controls="bid" aria-selected="true">Followers</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button"
+                                                            role="tab" aria-controls="info" aria-selected="false">Following</button>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content" id="myTabContent">
+                                                    <div class="tab-pane fade show active" id="bid" role="tabpanel" aria-labelledby="bid-tab">
+                                                        <div class="bid-history-overflow scroll">
+                                                            <ul class="bid-history-list">
+                                                                
+                                                                {% for p in pr %}
+
+                                                                <li>
+                                                                    <div class="bid-history-item">
+                                                                        <div class="highest-bid-avatar">
+                                                                            <div style="color:white;" class="thumb"><img style="border-radius: 100%; max-height: 50px ; max-width: 50px; min-width: 50px;" src="{{p.follower.profileimg.url}}" alt=""></div>
+                                                                            <div class="content">
+                                                                                <h5 class="title"><a href="/{{p.follower}}/">{{p.follower}}</a> {% if p.follower.is_verified == True %} <svg title="Verified" xmlns="" x="0px" y="0px"
+                                                                                    width="15" height="15"
+                                                                                    viewBox="0 0 50 50">
+                                                                                    <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                                                                                    </svg>{% endif %} </h5>
+                                                                                <span>follower</span>
+                                                                            </div>
+                                                                        </div>
+                                                
+                                                                    </div>
+                                                                </li>
+                                                                {% empty %}
+                                                                {% endfor %}
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                                                        <div class="bid-history-overflow scroll">
+                                                            <ul class="bid-history-list">
+                                                                {% for p in pr1 %}
+
+                                                                <li>
+                                                                    <div class="bid-history-item">
+                                                                        <div class="highest-bid-avatar">
+                                                                            <div style="color:white;" class="thumb"><img style="border-radius: 100%; max-height: 50px ; max-width: 50px; min-width: 50px;" src="{{p.user.profileimg.url}}" alt=""></div>
+                                                                            <div class="content">
+                                                                                <h5 class="title"><a href="/{{p.user}}/">{{p.user}}</a>
+                                                                                
+                                                                                    {% if p.user.is_verified == True %} <svg title="Verified" xmlns="" x="0px" y="0px"
+                                                                                    width="15" height="15"
+                                                                                    viewBox="0 0 50 50">
+                                                                                    <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                                                                                    </svg>{% endif %}
+
+                                                                                </h5>
+                                                                                <span>following</span>
+                                                                            </div>
+                                                                        </div>
+                                                
+                                                                    </div>
+                                                                </li>
+                                                                {% empty %}
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="tab-pane fade" id="month" role="tabpanel" aria-labelledby="month-tab">
+                                            <div class="activity-table-responsive">
+                                                <table class="table activity-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Following username</th>
+                                                        </tr>
+                                                    </thead>
+                                                   {% for p1 in pr1 %}
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row" class="author">
+                                                                {% if profile.is_verified == True %}<img style="width: 20px; height: 20px;" src="/static/verified/verify.png" alt="">{% else %}{% endif %} <a href="/{{p1.user}}">{{p1.user}}</a>
+                                                            </th> 
+                                                           
+                                                        </tr>
+                                                        
+                                                    </tbody>
+                                                    {% empty %}
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row" class="author">
+                                                                <p>This user don't follows any of users</p>
+                                                            </th> 
+                                                           
+                                                        </tr>
+                                                        
+                                                    </tbody>
+                                        {% endfor %}
+                                                </table>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                           
+
+{% endblock %}

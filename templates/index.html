@@ -1,0 +1,241 @@
+{% extends 'wrapper.html' %}
+{% block title  %}Coder | Source{% endblock %}
+{% block content %}
+
+
+
+
+    
+            <main>
+
+                <div class="banner-bg">
+
+                    <div class="banner-area">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-8">
+                                    <div class="banner-content">
+                                        <h2 class="title">Welcome To <br> <span>Coder | Source</span></h2>  
+                                        <a href="{% url 'core:upload' %}" class="banner-btn">Upload own project<i class="fi-sr-arrow-right"></i></a>
+
+
+                                        <div>
+                                            <style>
+                                                h5{
+                                                    color: red;
+                                            
+                                                }
+                                            </style>
+                                            {% for message in messages %}
+                                            <center><h5 style="background-color: white;" >{{message}}</h5></center>
+                                            {% endfor %}
+                                          
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <section class="top-collection-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="section-title mb-40">
+                                    <h2 class="title">Source Codes <img src="/static/img/icons/title_icon01.png" alt=""></h2>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="top-collection-nav"></div>
+                            </div>
+                        </div>
+                        <div class="row top-collection-active">
+                                {% for p in post %}
+                                <div class="col-xl-3">
+                                <div class="top-collection-item">
+                                    
+
+                                    <div class="collection-item-top">
+                                        <ul>
+                                            <li class="avatar"><a href="author-profile.html" class="thumb"><img src="{{ p.user.profileimg.url }}" alt=""></a>By <a href="/{{p.user}}/" class="name">{{p.user}}</a> &nbsp; {% if p.user.is_verified == True %}<svg xmlns="" x="0px" y="0px"
+                                                width="15" height="15"
+                                                viewBox="0 0 48 48">
+                                                <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                                                </svg>{% else %}{% endif %} </li>
+                                            <li class="info-dots dropdown">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"></a>
+                                                <ul class="dropdown-menu">
+                                                    {% if p.user.user == user %}<li><a href="{% url 'delete:post' p.id %}">Delete</a></li>{% else %}<li><a href="">Request to ban</a></li>{% endif %}
+                                                    <li><a href="{% url 'core:profile' p.user %}">Author</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="collection-item-thumb">
+                                        <a href="market-single.html"><img style="width: 1000px; height: 150px;" src="{{p.image.url}}" alt=""></a>
+                                    </div>
+                                    <div class="collection-item-content">
+                                        <h5 class="title"><a href="">{{p.name}}</a> <span class="price">{{p.created_at}}</span></h5>
+                                    </div>
+                                    <div class="collection-item-bottom">
+                                        <ul>
+                                            {% if p.user.user == user %}
+                                            <li class="bid"><a href="{% url 'edit:post' p.id %}" class="btn">Edit</a></li>
+                                            <li class="bid"><a href="{% url 'core:detail' p.id %}" class="btn">Visit</a></li>
+                                            {% else %}
+                                            <li class="bid"><a href="{% url 'core:detail' p.id %}" class="btn">Visit</a></li>
+                                            {% endif %}
+                                            
+                                            <li class="wishlist"><a href="{% url 'core:like' p.id %}">{{p.no_of_likes}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                                {% endfor %}
+                            
+
+                                    
+                            
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <section class="latest-news-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="section-title mb-45">
+                                    <h2 class="title">Advertisement <img src="/static/img/icons/title_icon01.png" alt=""></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            {% for a in ads %}
+                            <div class="col-xl-4 col-md-6 col-sm-9">
+
+                                
+
+                                <div class="latest-news-item">
+                                    <div class="latest-news-thumb">
+                                        <img src="{{a.image.url}}" alt="">
+                                    </div>
+                                    <div class="latest-news-content">
+                                        <ul class="latest-news-meta">
+                                            <li><i class="flaticon-user"></i><a href="{% url 'core:profile' a.user %}">{{a.user}}</a></li>
+                                            <li><i class="fi-sr-calendar"></i> {{a.reg_date}} </li>
+                                        </ul>
+                                        <h4 class="title"><a href="">{{a.name}}</a></h4>
+                                        <a href="{% url 'advert:detail' a.uid%}" class="btn">read more</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            {% empty %}
+
+                            <div class="col-xl-4 col-md-6 col-sm-9">
+
+
+                                <div class="latest-news-item">
+                                    <div class="latest-news-thumb">
+                                        <img src="/static/logo/adv.png" alt="">
+                                    </div>
+                                    <div class="latest-news-content">
+                                        <ul class="latest-news-meta">
+                                            <li><i class="flaticon-user"></i><a href="">Customers' username</a></li>
+                                            <li><i class="fi-sr-calendar"></i> date</li>
+                                        </ul>
+                                        <h4 class="title"><a href="">Place for your advertisement</a></h4>
+                                        <a href="https://t.me/toptalfreelancer" class="btn">order place</a>
+                                    </div>
+                                </div>
+
+                                
+
+                            </div>
+
+                            {% endfor %}
+                            
+
+                        </div>
+                    </div>
+                </section>
+
+                
+
+                <section class="design-ways-area">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                                <div class="design-ways-item">
+                                    <div class="overlay-icon"><i class="flaticon-download"></i></div>
+                                    <div class="icon"><i class="flaticon-download"></i></div>
+                                    <div class="content">
+                                        <h3 class="title">Downloads</h3>
+                                        <p>Enjoy Unlimited Downloads</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                                <div class="design-ways-item">
+                                    <div class="overlay-icon"><i class="flaticon-download-1"></i></div>
+                                    <div class="icon"><i class="flaticon-download-1"></i></div>
+                                    <div class="content">
+                                        <h3 class="title">Upload</h3>
+                                        <p>Upload Your files As Cloud</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                                <div class="design-ways-item">
+                                    <div class="overlay-icon"><i class="flaticon-help"></i></div>
+                                    <div class="icon"><i class="flaticon-help"></i></div>
+                                    <div class="content">
+                                        <h3 class="title">Support</h3>
+                                        <p>You can contact our moderators</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                                <div class="design-ways-item">
+                                    <div class="overlay-icon"><i class="flaticon-repairing-service"></i></div>
+                                    <div class="icon"><i class="flaticon-repairing-service"></i></div>
+                                    <div class="content">
+                                        <h3 class="title">Security</h3>
+                                        <p>Your files in qualified hands</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                
+
+
+
+                
+
+                
+
+            </main>
+
+
+            
+
+
+
+
+{% endblock %}

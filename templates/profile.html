@@ -1,0 +1,103 @@
+{% extends 'wrapper.html' %}
+
+{% block title  %}Coder | Source @{{profile.user}}{% endblock %}
+{% block content %}
+
+
+       
+            <!-- main-area -->
+            <main>
+
+                <!-- breadcrumb-area -->
+                <section class="breadcrumb-area breadcrumb-bg breadcrumb-bg-two">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 col-md-8">
+                                <div class="breadcrumb-content text-center">
+                                    <h3 class="title">{{profile.user|upper}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- breadcrumb-area-end -->
+
+                <!-- author-profile-area -->
+                <div class="author-profile-area">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-3 col-lg-4 col-md-6 order-2 order-lg-0">
+                                <aside class="author-profile-wrap">
+                                    <div class="author-profile-thumb">
+                                        <img src="{{profile.profileimg.url}}" alt="">
+                                    </div>
+                                    <div class="author-info">
+                                        <h5 class="title">{{profile.name}} {% if profile.is_verified == True %} &nbsp;<svg title="Verified" xmlns="" x="0px" y="0px"
+                                            width="20" height="20"
+                                            viewBox="0 0 50 50">
+                                            <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                                            </svg>{% endif %}</h5>
+                                        <span>@{{profile.user}}</span>
+                                        <p>{{profile.bio|safe}}</p>
+                                    </div>
+                                    <ul class="author-collection">
+                                        
+                                        <a href="{% url 'users:followers' profile.user %}">
+                                            <li>
+                                                <p>Followers</p>
+                                                <span>
+                                                    {{followers}} {{c}}
+                                                </span>
+                                            </li>
+                                        </a>
+
+                                        <a href="{% url 'users:followers' profile.user %}">
+                                        <li>
+                                            <p>Following</p>
+                                            <span>{{like}} {{l}}</span>
+                                        </li>
+                                    </a>
+                                        
+                                        
+                                        
+                                    </ul>
+                                    
+                                </aside>
+                            </div>
+                            <div class="col-xl-9 col-lg-8">
+                                
+
+                                    
+                               
+                                    <div class="author-product-meta">
+
+                                    
+                                        <ul>
+                                            <li class="active"><a href="{% if profile.user == user %}{% url 'users:settings' %}{% else %}{% url 'users:follow' profile.user.username %}{% endif %}">{% if profile.user == user %}Account Settings{% else %}{{button}}{% endif %}</a></li>
+                                            <li><a href="{% if profile.user == user %}{% url 'verification:ver' profile.user %}{% else %}{% url 'direct:create' profile.user %}{% endif %}">{% if profile.user == user %}{% if profile.is_verified == True %}Unverify Account{% else %}Verify Account{% endif %}{% else %}Message{% endif %}</a></li>
+                                        </ul>
+
+                                    </div>
+                                        
+
+                                
+                                    
+                                    {% block post %}
+
+
+                                    {% endblock %}
+
+                                
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- author-profile-area-end -->
+
+            </main>
+            <!-- main-area-end -->
+
+
+{% endblock %}

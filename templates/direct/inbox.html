@@ -1,0 +1,146 @@
+{% extends 'wrapper.html' %}
+
+{% block title %} Messages inbox {{user.username}}  {% endblock %}
+
+{% block content %}
+
+    <main style="margin-top: 130px;">
+
+    <section class="market-single-area">
+        <div class="container">
+            <div class="row">
+               
+
+
+                <div class="col-lg-6">
+                    <div class="bid-history-wrap">
+
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="bid" role="tabpanel" aria-labelledby="bid-tab">
+                                <div class="bid-history-overflow scroll">
+                                    <ul class="bid-history-list">
+                                        {% for i in inbox %}
+
+                                        <li>
+                                            <div class="bid-history-item">
+                                                <div class="highest-bid-avatar">
+                                                    <div class="thumb"><img style="border-radius: 100%; max-height: 50px ; max-width: 50px; min-width: 50px;" src="{{i.sender.profileimg.url}}" alt=""></div>
+                                                    <div class="content">
+                                                        <h5 class="title"><a href="/{{i.sender.user}}/">{{i.sender.name}}</a> {% if i.sender.is_verified %}<svg title="Verified" xmlns="" x="0px" y="0px"
+                                                            width="16" height="16"
+                                                            viewBox="0 0 50 50">
+                                                            <polygon title="Verified" fill="#42a5f5" points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"></polygon><polygon fill="#fff" points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"></polygon>
+                                                            </svg>{% endif %}</h5>
+                                                        <span style="width: 70px; margin-top: 10px;">{{i.message}}</span>
+                        
+                                                    </div>
+                                                </div>
+                                                <div class="bid-history-info">
+
+                                                    {% if i.sender.user == request.user %}
+
+                                                    <a href=""><h1 class="title">Delete</h1></a>
+
+                                                    {% else %}
+                                                    <a href=""><h1 class="title">Reply</h1></a>
+                                                    {% endif %}
+                                                    <span>{{i.date}}</span>
+
+
+                                                    {% if i.sender.user == request.user %}
+                                                    {% if i.is_read %}
+                                                    <i class="title">✔️✔️</i>
+                                                    {% else %}
+                                                    <i class="title">✔️</i>
+                                                    {% endif %}
+                                                    {% endif %}
+                                     
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        {% empty %}
+                                        <li>
+                                            <div class="bid-history-item">
+                                                <div class="highest-bid-avatar">
+                                
+                                                    <div class="content">
+                                                        <h5 class="title"><a href="">No Messages With This User!</a></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        {% endfor %}
+
+                                    
+                                    </ul>
+                                </div>
+                            </div>
+
+                            
+                            
+                        </div>
+
+                    
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="activity-table-responsive">
+                        
+
+                        
+
+
+                    </div>
+                </div>
+
+
+
+
+                <form action="{% url 'direct:send' message.uid user.username receiver  %}" method="post">{% csrf_token %}
+
+
+
+                    <div class="row" style="margin-top: 30px;">
+
+                        <div class="col-md-6">
+
+                            <div class="signup-form-wrap">
+
+                                <div class="form-grp">
+
+                                    <label for="rPassword">Message</label>
+                                    <input placeholder="Enter your message here" maxlength="140" minlength="1" name="message" type="text" id="rPassword">
+
+                                </div>
+
+                                <div class="form-btn-wrap">
+                                    <button type="submit" class="btn signup">Send</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    
+
+        
+
+
+</main>
+
+
+
+{% endblock %}

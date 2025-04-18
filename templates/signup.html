@@ -1,0 +1,150 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>NFTMAK - NFT Marketplace Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+		<!-- CSS here -->
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/animate.min.css">
+        <link rel="stylesheet" href="/static/css/magnific-popup.css">
+        <link rel="stylesheet" href="/static/css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="/static/css/uicons-solid-rounded.css">
+        <link rel="stylesheet" href="/static/css/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="/static/css/flaticon.css">
+        <link rel="stylesheet" href="/static/css/slick.css">
+        <link rel="stylesheet" href="/static/css/default.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">
+    </head>
+    <body>
+
+        <!-- preloader -->
+        <div id="preloader">
+            <div id="loading-center">
+                <div id="loading-center-absolute">
+                    <div class="object" id="object_one"></div>
+                    <div class="object" id="object_two"></div>
+                    <div class="object" id="object_three"></div>
+                </div>
+            </div>
+        </div>
+        <!-- preloader-end -->
+
+		<!-- Scroll-top -->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <i class="fas fa-angle-up"></i>
+        </button>
+        <!-- Scroll-top-end-->
+
+                <!-- welcome-area -->
+                <section class="login-welcome-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="login-welcome-wrap">
+                                    <div class="login-welcome-content">
+                                        <h2 class="title">Welcome to Coder | Source</h2>
+                                        <p>produced by<a href="https://instagram.com/toptalfreelancer">TopTalFreelancer</a></p>
+                                    </div>
+                                    <div class="welcome-rating">
+                                        <img src="/static/img/icons/three_star.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="signup-form-wrap">
+                                    <h4 class="title">Sign up</h4>
+                                    <div>
+                                        <style>
+                                            h5{
+                                                color: red;
+                                                margin-top: 30px;
+                                                margin-bottom: 30px;
+                                            }
+                                        </style>
+                                        {% for message in messages %}
+                                        <center><h5>{{message}}</h5></center>
+                                        {% endfor %}
+                                      
+                                        </div>
+                                    <form action="" method="post" >{% csrf_token %}
+                                        <div class="form-grp">
+                                            <label for="fName">Your Name</label>
+                                            <input maxlength="15" minlength="5" name="name" type="text" id="fName">
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="username">Username</label>
+                                            <input maxlength="15" minlength="5" name="username" type="text" id="username">
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="email">Email address</label>
+                                            <input name="email" type="email" id="email">
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="cPassword">Create Password</label>
+                                            <input maxlength="16" minlength="8" name="pass" type="password" id="cPassword">
+                                        </div>
+                                        <div class="form-grp">
+                                            <label for="rPassword">Password Confirm</label>
+                                            <input maxlength="16" minlength="8" name="conf" type="password" id="rPassword">
+                                        </div>
+                                        <div class="form-check">
+                                            <input required class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">I agree to the <a href="/media/privacy_policy/privacy_policy.pdf" download="">privacy policy</a></label>
+                                        </div>
+                                        <div class="form-btn-wrap">
+                                            <button class="btn signup">sign up</button>
+                                            <a href="{% url 'users:login' %}"><button type="button" class="btn login">log in</button></a>
+                                        </div>
+                                    </form> 
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="another-way-signup">
+                                    <h4 class="title">Tips</h4>
+                                    <p>Tips for Sign Up</p>
+                                    <ul class="another-way-list">
+                                        <li><a href="">Insert your name<span>1st</span></a></li>
+                                        <li><a href="">Insert your favorite username<span>2nd</span></a></li>
+                                        <li><a href="">Insert email<span>3th</span></a></li>
+                                        <li><a href="">Verify Email<span>4th</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- welcome-area-end -->
+
+            </main>
+            <!-- main-area-end -->
+
+
+
+        </div>
+        <!-- main-content-end -->
+
+
+
+		<!-- JS here -->
+        <script src="/static/js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/isotope.pkgd.min.js"></script>
+        <script src="/static/js/imagesloaded.pkgd.min.js"></script>
+        <script src="/static/js/jquery.magnific-popup.min.js"></script>
+        <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/static/js/slick.min.js"></script>
+        <script src="/static/js/wow.min.js"></script>
+        <script src="/static/js/plugins.js"></script>
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>
